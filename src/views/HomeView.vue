@@ -1,5 +1,5 @@
 <template>
-  <main id="container">
+  <div id="container">
     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 445.5 401.06" id="svgImage">
       <path
         d="M376 471.26h65.9a3.38 3.38 0 0 1 3.49 3.49l.22 20.16a3.34 3.34 0 0 1-3.49 3.31h-65.89a3.34 3.34 0 0 1-3.49-3.31l-.22-20.16a3.38 3.38 0 0 1 3.48-3.49Z"
@@ -20,7 +20,7 @@
         d="M313.67 297.72h-26.24a3.49 3.49 0 0 1-3.49-3.49v-20a3.49 3.49 0 0 1 3.49-3.49h81.46a3.49 3.49 0 0 1 3.49 3.49v20a3.49 3.49 0 0 1-3.49 3.49h-26.21v98a3.62 3.62 0 0 1-3.49 3.49h-22a3.62 3.62 0 0 1-3.49-3.49ZM125.06 129.22a3.52 3.52 0 0 1-3.31 2.94h-2.93a4 4 0 0 1-3.12-1.84L73.11 51h-.37l-42.58 79.32a4 4 0 0 1-3.12 1.84H24.1a3.51 3.51 0 0 1-3.3-2.94L.06 5.87a3.36 3.36 0 0 1 3.48-4H25.2a3.73 3.73 0 0 1 3.49 2.93l8.26 56.72h.37L68.15 2a4.33 4.33 0 0 1 3.13-2h3.3a4 4 0 0 1 3.12 2l31 59.47h.37l8.07-56.72a3.58 3.58 0 0 1 3.49-2.93h21.66a3.36 3.36 0 0 1 3.49 4Z"
         class="cls-2" />
     </svg>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,8 +31,8 @@ import { useMainStore } from '@/store';
 export default {
   setup() {
     const store = useMainStore();
-    const cls1 = computed(() => store.toggleClicked ? '#39b54a' : 'black');
-    const cls2 = computed(() => store.toggleClicked ? '#2a263d' : 'red');
+    const cls1 = computed(() => store.toggleClicked ? 'var(--green)' : 'var(--green)');
+    const cls2 = computed(() => store.toggleClicked ? 'var(--black)' : 'var(--white)');
 
     const rotate = (event: MouseEvent) => {
       const x = (event.pageX - window.innerWidth / 2) / 20;
