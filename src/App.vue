@@ -1,6 +1,28 @@
 <template>
-  <RouterView />
+  <div :style="{ backgroundColor: backgroundColor }">
+    <button @click="toggleColor" style="position: absolute; top: 10px; right: 10px;">Toggle Color</button>
+    <RouterView />
+  </div>
 </template>
+
+<script lang="ts">
+import { computed } from 'vue';
+import { useMainStore } from "@/store"
+export default {
+  setup() {
+    const store = useMainStore();
+    const backgroundColor = computed(() => store.toggleClicked ? '#2a263d' : 'white');
+    const toggleColor = () => {
+      store.toggleClickedState();
+    };
+
+    return {
+      backgroundColor,
+      toggleColor
+    };
+  },
+};
+</script>
 
 <style>
 body,
@@ -11,6 +33,5 @@ html {
   align-items: center;
   justify-content: center;
   perspective: 1000px;
-  background: #f5f5f5;
 }
 </style>
