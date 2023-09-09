@@ -4,17 +4,6 @@
       <input type="checkbox" @change="toggleColor">
       <span class="slider round"></span>
     </label>
-    <button class="hamburger-menu" @click="toggleSidebar">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <div class="sidebar" :class="{active: sidebarActive}">
-      <ul>
-        <li><a href="#item1">Who is this kid?</a></li>
-        <li><a href="#item2">What does he do?</a></li>  
-      </ul>
-    </div>
     <RouterView />
   </div>
 </template>
@@ -29,14 +18,10 @@ export default {
     const toggleColor = () => {
       store.toggleClickedState();
     };
-    const toggleSidebar = () => {
-      sidebarActive.value = !sidebarActive.value;
-    };
     const bgColor = computed(() => store.toggleClicked ? 'var(--white)' : 'var(--grey)');
 
     return {
       sidebarActive,
-      toggleSidebar,
       toggleColor,
       bgColor
     };
@@ -152,70 +137,5 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
-.hamburger-menu {
-  position: absolute;
-  top: 10px; 
-  left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.hamburger-menu span {
-  width: 2rem;
-  height: 0.325rem;
-  border-radius: 2px;
-  background: var(--green);
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
-}
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 300px;
-  background: var(--grey);
-  z-index: 9;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(-100%);
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-}
-
-.sidebar.active {
-  transform: translateX(0);
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0; 
-  width: 100%;
-}
-
-li a {
-  display: block; 
-  text-decoration: none;
-  color: var(--white);
-  padding: 8px 16px; 
-}
-
-li:hover a {
-  background: var(--green);
-  cursor: pointer;
-}
-
-li:hover {
-  background: var(--green);
 }
 </style>
