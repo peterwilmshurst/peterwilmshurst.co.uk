@@ -35,39 +35,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue'
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 import { useMainStore } from '@/store'
 
-export default {
-  setup() {
-    const store = useMainStore()
-    const cls1 = computed(() => (store.toggleClicked ? 'var(--green)' : 'var(--green)'))
-    const cls2 = computed(() => (store.toggleClicked ? 'var(--black)' : 'var(--white)'))
+const store = useMainStore()
+const cls1 = computed(() => (store.toggleClicked ? 'var(--green)' : 'var(--green)'))
+const cls2 = computed(() => (store.toggleClicked ? 'var(--black)' : 'var(--white)'))
 
-    const rotate = (event: MouseEvent) => {
-      const x = (event.pageX - window.innerWidth / 2) / 20
-      const y = (event.pageY - window.innerHeight / 2) / -20
-      const svgImage = document.getElementById('svgImage')
-      if (svgImage instanceof SVGElement) {
-        svgImage.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`
-      }
-    }
-
-    onMounted(() => {
-      window.addEventListener('mousemove', rotate)
-    })
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('mousemove', rotate)
-    })
-    return {
-      cls1,
-      cls2,
-    }
-  },
+const rotate = (event: MouseEvent) => {
+  const x = (event.pageX - window.innerWidth / 2) / 20
+  const y = (event.pageY - window.innerHeight / 2) / -20
+  const svgImage = document.getElementById('svgImage')
+  if (svgImage instanceof SVGElement) {
+    svgImage.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`
+  }
 }
+
+onMounted(() => {
+  window.addEventListener('mousemove', rotate)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('mousemove', rotate)
+})
 </script>
 
 <style scoped>

@@ -11,26 +11,20 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useMainStore } from '@/store'
-import { computed, ref } from 'vue'
-export default {
-  setup() {
-    const store = useMainStore()
-    const sidebarActive = ref(false)
-    const toggleColor = () => {
-      store.toggleClickedState()
-    }
-    const bgColor = computed(() => (store.toggleClicked ? 'var(--white)' : 'var(--grey)'))
+import { computed, onMounted } from 'vue'
 
-    return {
-      sidebarActive,
-      toggleColor,
-      bgColor,
-    }
-  },
-  mounted() {
-    console.log(`
+const store = useMainStore()
+
+const toggleColor = () => {
+  store.toggleClickedState()
+}
+
+const bgColor = computed(() => (store.toggleClicked ? 'var(--white)' : 'var(--grey)'))
+
+onMounted(() => {
+  console.log(`
     /*
 #   _     _  ___   ___                          
 #  | | _ | ||   | |   |                         
@@ -56,8 +50,7 @@ export default {
 #
 #
 */`)
-  },
-}
+})
 </script>
 
 <style>
