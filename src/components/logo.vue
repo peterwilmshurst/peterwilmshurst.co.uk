@@ -40,8 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMainStore } from '@/store'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useMainStore } from '@/store'
 
 const store = useMainStore()
 const cls1 = computed(() =>

@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMainStore } from '@/store'
 import { onMounted } from 'vue'
+import { useMainStore } from '@/store'
 
 const store = useMainStore()
 
