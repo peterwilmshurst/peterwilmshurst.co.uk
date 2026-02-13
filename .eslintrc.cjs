@@ -1,15 +1,38 @@
-/* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
-
-module.exports = {
-  root: true,
-  'extends': [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting'
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest'
-  }
-}
+module.exports = [
+  {
+    ignores: ['dist/**', 'node_modules/**', '**/*.vue', '**/*.{ts,tsx,cts,mts}'],
+  },
+  {
+    files: ['**/*.cjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+    },
+    rules: {
+      'no-undef': 'error',
+      'no-unused-vars': 'error',
+    },
+  },
+  {
+    files: ['**/*.{js,mjs,jsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+    rules: {
+      'no-undef': 'error',
+      'no-unused-vars': 'error',
+    },
+  },
+  {
+    files: ['postcss.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+    },
+    rules: {
+      'no-undef': 'error',
+      'no-unused-vars': 'error',
+    },
+  },
+]
