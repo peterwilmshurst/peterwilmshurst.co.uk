@@ -1,6 +1,11 @@
 <template>
+  <div
+    class="logo relative h-125 w-125 perspective-[1000px]"
+    :style="{ '--logo-fill-1': cls1, '--logo-fill-2': cls2 }"
+  >
     <svg
-      id="svgImage"
+      ref="svgImage"
+      class="relative h-full w-full transform-3d transition-transform duration-100 ease-out"
       xmlns="http://www.w3.org/2000/svg"
       data-name="Wilmshurst_"
       viewBox="0 0 445.5 401.06"
@@ -31,22 +36,23 @@
         class="cls-2"
       />
     </svg>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useMainStore } from '@/store'
 
 const store = useMainStore()
-const cls1 = computed(() => (store.toggleClicked ? 'var(--green)' : 'var(--green)'))
-const cls2 = computed(() => (store.toggleClicked ? 'var(--black)' : 'var(--white)'))
+const cls1 = computed(() => (store.toggleClicked ? 'var(--color-brand-green)' : 'var(--color-brand-green)'))
+const cls2 = computed(() => (store.toggleClicked ? 'var(--color-brand-black)' : 'var(--color-white)'))
+const svgImage = ref<SVGSVGElement | null>(null)
 
 const rotate = (event: MouseEvent) => {
   const x = (event.pageX - window.innerWidth / 2) / 20
   const y = (event.pageY - window.innerHeight / 2) / -20
-  const svgImage = document.getElementById('svgImage')
-  if (svgImage instanceof SVGElement) {
-    svgImage.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`
+  if (svgImage.value) {
+    svgImage.value.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`
   }
 }
 
@@ -58,21 +64,3 @@ onBeforeUnmount(() => {
   window.removeEventListener('mousemove', rotate)
 })
 </script>
-
-<style scoped>
-#svgImage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.1s ease-out;
-}
-
-.cls-1 {
-  fill: v-bind(cls1);
-}
-
-.cls-2 {
-  fill: v-bind(cls2);
-}
-</style>

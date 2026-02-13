@@ -1,11 +1,11 @@
 <template>
   <div id="container">
-    <WilmshurstLogo />
+    <Logo />
   </div>
 </template>
 
 <script setup lang="ts">
-import WilmshurstLogo from '@/components/WilmshurstLogo.vue'
+import Logo from '@/components/logo.vue'
 </script>
 
 <style scoped>
@@ -15,4 +15,4 @@ import WilmshurstLogo from '@/components/WilmshurstLogo.vue'
   height: 500px;
   perspective: 1000px;
 }
-</style >
+</style>

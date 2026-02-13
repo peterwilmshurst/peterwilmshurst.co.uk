@@ -1,11 +1,17 @@
 <template>
-  <div class="app-container">
-    <label class="switch">
+  <div
+    class="relative flex min-h-screen w-full items-center justify-center perspective-[1000px]"
+    :class="store.toggleClicked ? 'bg-white' : 'bg-brand-grey'"
+  >
+    <label class="absolute top-2.5 right-2.5 h-8.5 w-15">
       <input
         type="checkbox"
+        class="peer sr-only"
         @change="toggleColor"
       >
-      <span class="slider round" />
+      <span
+        class="absolute inset-0 cursor-pointer rounded-full bg-light-grey transition-colors duration-300 before:absolute before:bottom-1 before:left-1 before:h-6.5 before:w-6.5 before:rounded-full before:bg-white before:transition-transform before:duration-300 before:content-[''] peer-checked:bg-brand-green peer-checked:before:translate-x-6.5 peer-focus-visible:shadow-[0_0_1px_var(--color-brand-green)]"
+      />
     </label>
     <RouterView />
   </div>
@@ -13,15 +19,13 @@
 
 <script setup lang="ts">
 import { useMainStore } from '@/store'
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
 const store = useMainStore()
 
 const toggleColor = () => {
   store.toggleClickedState()
 }
-
-const bgColor = computed(() => (store.toggleClicked ? 'var(--white)' : 'var(--grey)'))
 
 onMounted(() => {
   console.log(`
@@ -52,86 +56,3 @@ onMounted(() => {
 */`)
 })
 </script>
-
-<style>
-:root {
-  --white: #ffffff;
-  --black: #2a263d;
-  --green: #39b54a;
-  --grey: #38344d;
-}
-
-body,
-html,
-#app {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-
-.app-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
-  background-color: v-bind(bgColor);
-}
-
-.switch {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
-}
-
-input:checked + .slider {
-  background-color: var(--green);
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--green);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-</style>
