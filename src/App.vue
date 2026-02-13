@@ -1,8 +1,11 @@
 <template>
   <div class="app-container">
     <label class="switch">
-      <input type="checkbox" @change="toggleColor" />
-      <span class="slider round"></span>
+      <input
+        type="checkbox"
+        @change="toggleColor"
+      >
+      <span class="slider round" />
     </label>
     <RouterView />
   </div>
@@ -23,7 +26,7 @@ export default {
     return {
       sidebarActive,
       toggleColor,
-      bgColor
+      bgColor,
     }
   },
   mounted() {
@@ -53,7 +56,7 @@ export default {
 #
 #
 */`)
-  }
+  },
 }
 </script>
 

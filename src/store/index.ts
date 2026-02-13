@@ -4,12 +4,12 @@ export const useMainStore = defineStore({
   id: 'main',
 
   state: () => ({
-    toggleClicked: false
+    toggleClicked: false,
   }),
 
   actions: {
     toggleClickedState() {
       this.toggleClicked = !this.toggleClicked
-    }
-  }
+    },
+  },
 })

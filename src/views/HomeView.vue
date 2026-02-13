@@ -1,10 +1,10 @@
 <template>
   <div id="container">
     <svg
+      id="svgImage"
       xmlns="http://www.w3.org/2000/svg"
       data-name="Wilmshurst_"
       viewBox="0 0 445.5 401.06"
-      id="svgImage"
     >
       <path
         d="M376 471.26h65.9a3.38 3.38 0 0 1 3.49 3.49l.22 20.16a3.34 3.34 0 0 1-3.49 3.31h-65.89a3.34 3.34 0 0 1-3.49-3.31l-.22-20.16a3.38 3.38 0 0 1 3.48-3.49Z"
@@ -64,9 +64,9 @@ export default {
     })
     return {
       cls1,
-      cls2
+      cls2,
     }
-  }
+  },
 }
 </script>
 
