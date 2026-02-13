@@ -40,12 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useMainStore } from '@/store'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const store = useMainStore()
-const cls1 = computed(() => (store.toggleClicked ? 'var(--color-brand-green)' : 'var(--color-brand-green)'))
-const cls2 = computed(() => (store.toggleClicked ? 'var(--color-brand-black)' : 'var(--color-white)'))
+const cls1 = computed(() =>
+  store.toggleClicked ? 'var(--color-brand-green)' : 'var(--color-brand-green)',
+)
+const cls2 = computed(() =>
+  store.toggleClicked ? 'var(--color-brand-black)' : 'var(--color-white)',
+)
 const svgImage = ref<SVGSVGElement | null>(null)
 
 const rotate = (event: MouseEvent) => {

@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "lint": "eslint . --config .eslintrc.cjs --fix"
+    "lint": "biome check . --write",
+    "format": "biome format . --write"
   },
   "dependencies": {
     "pinia": "^3.0.4",
@@ -16,21 +17,16 @@
     "vue-router": "^5.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@stylistic/eslint-plugin": "^5.3.1",
+    "@biomejs/biome": "^1.9.4",
     "@tailwindcss/vite": "^4.1.18",
     "@tsconfig/node18": "^18.2.6",
     "@types/node": "^25.2.3",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vue/tsconfig": "^0.8.1",
-    "eslint": "^9.39.1",
-    "eslint-plugin-vue": "^10.7.0",
     "npm-run-all": "^4.1.5",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1",
     "vite": "^7.3.1",
-    "vue-eslint-parser": "^10.2.0",
     "vue-tsc": "^3.2.4"
   }
 }

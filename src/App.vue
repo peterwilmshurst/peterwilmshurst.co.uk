@@ -3,7 +3,7 @@
     class="relative flex min-h-screen w-full items-center justify-center perspective-[1000px]"
     :class="store.toggleClicked ? 'bg-white' : 'bg-brand-grey'"
   >
-    <label class="absolute top-2.5 right-2.5 h-8.5 w-15">
+    <label class='absolute top-2.5 right-2.5 h-8.5 w-15'>
       <input
         type="checkbox"
         class="peer sr-only"

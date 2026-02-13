@@ -15,12 +15,12 @@
 - `npm run build`: run type-check then production build.
 - `npm run build-only`: build without type-check (faster local iteration).
 - `npm run type-check`: run `vue-tsc` against `tsconfig.app.json`.
-- `npm run lint`: run ESLint with auto-fix using `.eslintrc.cjs`.
+- `npm run lint`: run Biome checks with auto-fix via `biome.json`.
 
 ## Coding Style & Naming Conventions
 - Language stack: TypeScript + Vue 3 SFCs.
 - Indentation: 2 spaces in TS, JS, and Vue files.
-- Use single quotes and omit semicolons (enforced by `@stylistic/eslint-plugin`).
+- Use single quotes and omit semicolons (enforced by Biome).
 - Prefer PascalCase for Vue component filenames (for example `HomeView.vue`).
 - Keep route/store module names concise and descriptive (for example `router/index.ts`, `store/index.ts`).
 

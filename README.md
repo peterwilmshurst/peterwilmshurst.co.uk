@@ -8,7 +8,7 @@ Personal site built with Vue 3, TypeScript, Vite, Pinia, Vue Router, and Tailwin
 - Pinia 3
 - Vue Router 5
 - Tailwind CSS v4
-- ESLint 9
+- Biome
 
 ## Getting Started
 
@@ -23,7 +23,8 @@ Open the local URL printed by Vite (usually `http://localhost:5173`).
 
 ```sh
 npm run dev         # Start development server
-npm run lint        # Run ESLint with autofix
+npm run lint        # Run Biome checks with autofix
+npm run format      # Format files with Biome
 npm run type-check  # Run vue-tsc type checking
 npm run build       # Type-check + production build
 npm run build-only  # Production build without type-check
@@ -46,7 +47,7 @@ public/             # Static public assets
 ## Code Quality
 - Use TypeScript for authored application code.
 - Run `npm run lint` and `npm run type-check` before commits.
-- ESLint enforces single quotes and no semicolons.
+- Biome enforces single quotes and no semicolons.
 
 ## Build for Production
 
