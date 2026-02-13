@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <label class="switch">
-      <input type="checkbox" @change="toggleColor">
+      <input type="checkbox" @change="toggleColor" />
       <span class="slider round"></span>
     </label>
     <RouterView />
@@ -9,22 +9,22 @@
 </template>
 
 <script lang="ts">
-import { useMainStore } from "@/store"
+import { useMainStore } from '@/store'
 import { computed, ref } from 'vue'
 export default {
   setup() {
-    const store = useMainStore();
-    const sidebarActive = ref(false);
+    const store = useMainStore()
+    const sidebarActive = ref(false)
     const toggleColor = () => {
-      store.toggleClickedState();
-    };
-    const bgColor = computed(() => store.toggleClicked ? 'var(--white)' : 'var(--grey)');
+      store.toggleClickedState()
+    }
+    const bgColor = computed(() => (store.toggleClicked ? 'var(--white)' : 'var(--grey)'))
 
     return {
       sidebarActive,
       toggleColor,
       bgColor
-    };
+    }
   },
   mounted() {
     console.log(`
@@ -54,13 +54,13 @@ export default {
 #
 */`)
   }
-};
+}
 </script>
 
 <style>
 :root {
-  --white: #FFFFFF;
-  --black: #2A263D;
+  --white: #ffffff;
+  --black: #2a263d;
   --green: #39b54a;
   --grey: #38344d;
 }
@@ -71,7 +71,7 @@ html,
   height: 100%;
   width: 100%;
   margin: 0;
-} 
+}
 
 .app-container {
   height: 100%;
@@ -85,13 +85,13 @@ html,
 
 .switch {
   position: absolute;
-  top: 10px; 
+  top: 10px;
   right: 10px;
   width: 60px;
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -105,18 +105,18 @@ html,
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
