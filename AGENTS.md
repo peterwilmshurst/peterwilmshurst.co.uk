@@ -2,11 +2,13 @@
 
 ## Project Structure & Module Organization
 - `src/` contains application code.
-- `src/main.ts` bootstraps Vue, router, and store.
-- `src/views/` holds route-level Vue pages (for example `HomeView.vue`).
-- `src/router/` defines route configuration.
-- `src/store/` contains Pinia stores.
-- `src/assets/` stores static source assets; `public/` holds files served as-is.
+- `src/main.ts` bootstraps Vue, router, Pinia, and global styles.
+- `src/views/home.vue` is the current route-level page.
+- `src/components/logo.vue` contains the main SVG logo component.
+- `src/router/` contains router setup plus `route-names.ts` and `meta.d.ts`.
+- `src/store/index.ts` contains the primary Pinia store.
+- `src/style.css` contains Tailwind import, theme tokens, and shared global styles.
+- `public/` holds files served as-is.
 - `dist/` is build output and should not be edited manually.
 
 ## Build, Test, and Development Commands
@@ -16,21 +18,23 @@
 - `npm run build-only`: build without type-check (faster local iteration).
 - `npm run type-check`: run `vue-tsc` against `tsconfig.app.json`.
 - `npm run lint`: run Biome checks with auto-fix via `biome.json`.
+- `npm run format`: run Biome formatter across the repo.
 
 ## Coding Style & Naming Conventions
 - Language stack: TypeScript + Vue 3 SFCs.
 - Indentation: 2 spaces in TS, JS, and Vue files.
 - Use single quotes and omit semicolons (enforced by Biome).
-- Prefer PascalCase for Vue component filenames (for example `HomeView.vue`).
+- Keep component filenames consistent per folder; prefer PascalCase for new components.
 - Keep route/store module names concise and descriptive (for example `router/index.ts`, `store/index.ts`).
+- Use Tailwind utility classes first; place shared/non-utility rules in `src/style.css`.
 
 ## Testing Guidelines
 - No dedicated unit test suite is configured yet.
-- Treat `npm run lint`, `npm run type-check`, and `npm run build` as required quality gates before opening a PR.
+- Treat `npm run format`, `npm run lint`, `npm run type-check`, and `npm run build` as required quality gates before opening a PR.
 - For behavior changes, include manual verification notes in the PR description (paths tested, expected outcome).
 
 ## Commit & Pull Request Guidelines
-- Follow existing Conventional Commit style seen in history, e.g. `chore: upgrade vue-router to v5`.
+- Follow the Conventional Commit style used in recent history (`chore:`, `refactor:`, `feat:`, `fix:`), e.g. `chore: update biome configuration`.
 - Use imperative, scoped subjects (`feat: add contact form route`, `fix: handle missing store state`).
 - Keep commits focused; avoid bundling unrelated refactors.
 - PRs should include the following:
