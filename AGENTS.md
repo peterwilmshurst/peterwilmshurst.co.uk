@@ -19,6 +19,8 @@
 - `npm run type-check`: run `vue-tsc` against `tsconfig.app.json`.
 - `npm run lint`: run Biome checks with auto-fix via `biome.json`.
 - `npm run format`: run Biome formatter across the repo.
+- `npm run test:e2e`: run Playwright smoke tests.
+- `npm run test:e2e:ui`: run Playwright in interactive UI mode.
 
 ## Coding Style & Naming Conventions
 - Language stack: TypeScript + Vue 3 SFCs.
@@ -29,8 +31,9 @@
 - Use Tailwind utility classes first; place shared/non-utility rules in `src/style.css`.
 
 ## Testing Guidelines
+- Playwright smoke tests are in `tests/e2e/`.
 - No dedicated unit test suite is configured yet.
-- Treat `npm run format`, `npm run lint`, `npm run type-check`, and `npm run build` as required quality gates before opening a PR.
+- Treat `npm run format`, `npm run lint`, `npm run type-check`, `npm run test:e2e`, and `npm run build` as required quality gates before opening a PR.
 - For behavior changes, include manual verification notes in the PR description (paths tested, expected outcome).
 
 ## Commit & Pull Request Guidelines
@@ -40,7 +43,7 @@
 - PRs should include the following:
 1. A short summary of what changed and why.
 2. Linked issue(s) when applicable.
-3. Validation steps run (`npm run lint`, `npm run type-check`, `npm run build`).
+3. Validation steps run (`npm run lint`, `npm run type-check`, `npm run test:e2e`, `npm run build`).
 4. Screenshots for UI-visible changes.
 
 ## Security & Configuration Tips
