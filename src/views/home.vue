@@ -115,6 +115,15 @@ interface TerminalLine {
   text: string
 }
 
+const initialTerminalLines: TerminalLine[] = [
+  { id: 0, kind: 'system', text: 'Booting portfolio terminal...' },
+  {
+    id: 1,
+    kind: 'system',
+    text: 'Type "help" or click a quick prompt to get started.',
+  },
+]
+
 const asciiLogo = `
    _     _  ___   ___
   | | _ | ||   | |   |
@@ -181,14 +190,9 @@ const activeCommand = ref('')
 const commandInput = ref<HTMLInputElement | null>(null)
 const terminalWindow = ref<HTMLElement | null>(null)
 const sequence = ref(2)
-const terminalLines = ref<TerminalLine[]>([
-  { id: 0, kind: 'system', text: 'Booting portfolio terminal...' },
-  {
-    id: 1,
-    kind: 'system',
-    text: 'Type "help" or click a quick prompt to get started.',
-  },
-])
+const terminalLines = ref<TerminalLine[]>(
+  initialTerminalLines.map((line) => ({ ...line })),
+)
 
 const appendLine = (kind: LineKind, text: string) => {
   terminalLines.value.push({ id: sequence.value, kind, text })
@@ -239,6 +243,15 @@ const submitCommand = () => {
   }
 
   const command = activeCommand.value
+  const normalizedCommand = command.trim().toLowerCase()
+
+  if (normalizedCommand === 'clear') {
+    terminalLines.value = initialTerminalLines.map((line) => ({ ...line }))
+    sequence.value = initialTerminalLines.length
+    activeCommand.value = ''
+    return
+  }
+
   appendLine('prompt', `visitor@site:~$ ${command}`)
   for (const answer of resolveResponse(command)) {
     appendLine('response', answer)

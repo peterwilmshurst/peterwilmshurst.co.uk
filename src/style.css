@@ -59,7 +59,9 @@
 .terminal-window {
   position: relative;
   width: min(1080px, 100%);
-  min-height: 620px;
+  max-height: 82vh;
+  max-height: 82dvh;
+  min-height: min(620px, 82dvh);
   border: 1px solid var(--color-terminal-border);
   border-radius: 16px;
   overflow: hidden;
@@ -68,6 +70,8 @@
     0 30px 80px rgb(0 0 0 / 45%),
     0 0 0 1px rgb(124 156 188 / 15%) inset;
   transition: all 220ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .terminal-window--draggable .terminal-titlebar {
@@ -82,7 +86,9 @@
 
 .terminal-window--maximized {
   width: 100%;
-  min-height: calc(100vh - 3rem);
+  min-height: 0;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
 }
 
 .terminal-window--maximized .terminal-titlebar {
@@ -140,14 +146,18 @@
 }
 
 .terminal-body {
-  min-height: calc(620px - 54px);
+  min-height: 0;
+  flex: 1;
   display: grid;
   grid-template-columns: 340px 1fr;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .terminal-brand {
+  min-height: 0;
+  overflow: hidden;
   padding: 1.4rem;
   border-right: 1px solid var(--color-terminal-border);
   display: flex;
@@ -188,6 +198,8 @@
   padding: 1.4rem;
   gap: 1rem;
   min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .console-output {
@@ -197,6 +209,7 @@
   border-radius: 10px;
   padding: 1rem;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   background:
     linear-gradient(rgb(19 27 36 / 70%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(19 27 36 / 55%) 1px, transparent 1px),
