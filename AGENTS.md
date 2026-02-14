@@ -40,6 +40,7 @@
 - Follow the Conventional Commit style used in recent history (`chore:`, `refactor:`, `feat:`, `fix:`), e.g. `chore: update biome configuration`.
 - Use imperative, scoped subjects (`feat: add contact form route`, `fix: handle missing store state`).
 - Keep commits focused; avoid bundling unrelated refactors.
+- Branch protection should require the GitHub Actions status check: `Quality Gate` (from `.github/workflows/pr-checks.yml`).
 - PRs should include the following:
 1. A short summary of what changed and why.
 2. Linked issue(s) when applicable.
