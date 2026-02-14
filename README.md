@@ -50,6 +50,7 @@ biome.json          # Lint/format config
 - Use TypeScript for authored application code.
 - Run `npm run format`, `npm run lint`, and `npm run type-check` before commits.
 - Biome enforces formatting and lint rules (single quotes, no semicolons, Tailwind directives enabled for CSS parsing).
+- Keep file names concise (`home.vue`, `logo.vue`) and import components in PascalCase aliases (`import Home from './home.vue'`).
 
 ## Recent Changes
 - Migrated from ESLint + Stylistic to Biome.

@@ -24,7 +24,7 @@
 - Language stack: TypeScript + Vue 3 SFCs.
 - Indentation: 2 spaces in TS, JS, and Vue files.
 - Use single quotes and omit semicolons (enforced by Biome).
-- Keep component filenames consistent per folder; prefer PascalCase for new components.
+- Use concise lowercase filenames for Vue SFCs (for example `home.vue`, `logo.vue`) and import them with PascalCase aliases (`Home`, `Logo`) in SFC scripts.
 - Keep route/store module names concise and descriptive (for example `router/index.ts`, `store/index.ts`).
 - Use Tailwind utility classes first; place shared/non-utility rules in `src/style.css`.
 
