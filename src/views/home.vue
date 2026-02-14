@@ -1,13 +1,17 @@
 <template>
   <div class="portfolio-stage">
     <div
+      ref="terminalWindow"
       class="terminal-window"
+      :style="terminalStyle"
       :class="{
+        'terminal-window--dragging': isDragging,
+        'terminal-window--draggable': isWindowDraggable,
         'terminal-window--minimized': windowMode === 'minimized',
         'terminal-window--maximized': windowMode === 'maximized',
       }"
     >
-      <header class="terminal-titlebar">
+      <header class="terminal-titlebar" @pointerdown="onTitleBarPointerDown">
         <div class="window-controls">
           <button
             type="button"
@@ -28,7 +32,7 @@
             aria-label="Maximize terminal"
           />
         </div>
-        <p class="terminal-title">peter@portfolio ~/ai-shell</p>
+        <p class="terminal-title">portfolio ~/terminal</p>
       </header>
 
       <section
@@ -99,8 +103,9 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import Logo from '@/components/logo.vue'
+import { useDraggableOffset } from '@/composables/useDraggableOffset'
 
 type WindowMode = 'open' | 'minimized' | 'maximized' | 'closed'
 type LineKind = 'system' | 'prompt' | 'response'
@@ -151,6 +156,7 @@ const windowMode = ref<WindowMode>('open')
 const lastMode = ref<Exclude<WindowMode, 'closed'>>('open')
 const activeCommand = ref('')
 const commandInput = ref<HTMLInputElement | null>(null)
+const terminalWindow = ref<HTMLElement | null>(null)
 const sequence = ref(2)
 const terminalLines = ref<TerminalLine[]>([
   { id: 0, kind: 'system', text: 'Booting portfolio terminal...' },
@@ -222,4 +228,24 @@ const runSuggestion = (suggestion: string) => {
   submitCommand()
   focusInput()
 }
+
+const isWindowDraggable = computed(() => {
+  return windowMode.value !== 'closed' && windowMode.value !== 'maximized'
+})
+
+const {
+  dragging: isDragging,
+  onPointerDown: onTitleBarPointerDown,
+  style: terminalDragStyle,
+} = useDraggableOffset({
+  targetRef: terminalWindow,
+  enabled: () => isWindowDraggable.value,
+})
+
+const terminalStyle = computed(() => {
+  if (windowMode.value === 'maximized') {
+    return {}
+  }
+  return terminalDragStyle.value
+})
 </script>

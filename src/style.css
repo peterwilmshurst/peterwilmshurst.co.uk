@@ -67,9 +67,23 @@
   transition: all 220ms ease;
 }
 
+.terminal-window--draggable .terminal-titlebar {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.terminal-window--dragging .terminal-titlebar {
+  cursor: grabbing;
+}
+
 .terminal-window--maximized {
   width: 100%;
   min-height: calc(100vh - 3rem);
+}
+
+.terminal-window--maximized .terminal-titlebar {
+  cursor: default;
 }
 
 .terminal-window--minimized {
