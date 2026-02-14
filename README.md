@@ -65,6 +65,7 @@ biome.json          # Lint/format config
 - Added typed route names and `RouteMeta` augmentation.
 - Moved major visual styles to Tailwind utilities and global `src/style.css`.
 - Extracted SVG logo into a standalone Vue component.
+- Added Playwright smoke tests and PR quality checks.
 
 ## Build for Production
 
