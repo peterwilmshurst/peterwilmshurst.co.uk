@@ -65,3 +65,9 @@ npm run build
 ```
 
 Output is generated in `dist/`.
+
+## Node and Netlify Build Requirements
+- This project uses `vite@7` and `@tailwindcss/vite`, which require Node `20.19+` or `22.12+`.
+- Recommended local version is Node `22` (`.nvmrc` is set to `22`).
+- Netlify is configured via `netlify.toml` to build with Node `22`.
+- If Netlify builds still use Node 18, check for an overriding `NODE_VERSION` in Netlify site/team environment settings.
