@@ -130,23 +130,18 @@
 .terminal-brand {
   padding: 1.4rem;
   border-right: 1px solid var(--color-terminal-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background:
     linear-gradient(180deg, rgb(39 52 72 / 30%) 0%, rgb(13 17 23 / 20%) 100%),
     var(--color-terminal-panel);
 }
 
-.brand-ascii {
-  margin: 0 0 1rem;
-  color: #8ceda4;
-  line-height: 1.1;
-  font-size: 0.82rem;
-  white-space: pre;
-}
-
 .logo-shell {
   width: 100%;
-  max-width: 180px;
-  margin: 0 auto 1rem;
+  max-width: 260px;
+  margin: 0 auto 1.25rem;
 }
 
 .logo-shell .logo {
@@ -292,6 +287,6 @@
   }
 
   .logo-shell {
-    max-width: 145px;
+    max-width: 180px;
   }
 }

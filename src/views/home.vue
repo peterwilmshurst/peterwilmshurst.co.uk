@@ -36,7 +36,6 @@
         class="terminal-body"
       >
         <aside class="terminal-brand">
-          <pre class="brand-ascii" aria-hidden="true">{{ banner }}</pre>
           <div class="logo-shell">
             <Logo />
           </div>
@@ -111,14 +110,6 @@ interface TerminalLine {
   kind: LineKind
   text: string
 }
-
-const banner = `
- ____  _____ _____ _____ ____  
-|  _ \\| ____|_   _| ____|  _ \\ 
-| |_) |  _|   | | |  _| | |_) |
-|  __/| |___  | | | |___|  _ < 
-|_|   |_____| |_| |_____|_| \\_\\
-`
 
 const suggestions = [
   'what skills do you have?',
