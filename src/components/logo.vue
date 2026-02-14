@@ -4,7 +4,6 @@
     :style="{ '--logo-fill-1': cls1, '--logo-fill-2': cls2 }"
   >
     <svg
-      ref="svgImage"
       class="relative h-full w-full transform-3d transition-transform duration-100 ease-out"
       xmlns="http://www.w3.org/2000/svg"
       data-name="Wilmshurst_"
@@ -40,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useMainStore } from '@/store'
 
 const store = useMainStore()
@@ -50,21 +49,4 @@ const cls1 = computed(() =>
 const cls2 = computed(() =>
   store.toggleClicked ? 'var(--color-brand-black)' : 'var(--color-white)',
 )
-const svgImage = ref<SVGSVGElement | null>(null)
-
-const rotate = (event: MouseEvent) => {
-  const x = (event.pageX - window.innerWidth / 2) / 20
-  const y = (event.pageY - window.innerHeight / 2) / -20
-  if (svgImage.value) {
-    svgImage.value.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('mousemove', rotate)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('mousemove', rotate)
-})
 </script>
