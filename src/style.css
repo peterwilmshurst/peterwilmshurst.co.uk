@@ -48,6 +48,8 @@
 .portfolio-stage {
   display: flex;
   min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   padding: 1.5rem;
   align-items: center;
@@ -55,6 +57,7 @@
 }
 
 .terminal-window {
+  position: relative;
   width: min(1080px, 100%);
   min-height: 620px;
   border: 1px solid var(--color-terminal-border);
@@ -98,6 +101,7 @@
   background: linear-gradient(180deg, #1a212d 0%, #131923 100%);
   border-bottom: 1px solid var(--color-terminal-border);
   position: relative;
+  z-index: 2;
 }
 
 .window-controls {
@@ -139,6 +143,8 @@
   min-height: calc(620px - 54px);
   display: grid;
   grid-template-columns: 340px 1fr;
+  position: relative;
+  z-index: 2;
 }
 
 .terminal-brand {
@@ -146,21 +152,26 @@
   border-right: 1px solid var(--color-terminal-border);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 1rem;
   background:
     linear-gradient(180deg, rgb(39 52 72 / 30%) 0%, rgb(13 17 23 / 20%) 100%),
     var(--color-terminal-panel);
 }
 
-.logo-shell {
-  width: 100%;
-  max-width: 260px;
-  margin: 0 auto 1.25rem;
+.ascii-logo {
+  margin: 0;
+  white-space: pre;
+  line-height: 1.2;
+  font-size: 0.64rem;
+  color: #8ceda4;
 }
 
-.logo-shell .logo {
-  width: 100%;
-  height: auto;
+.ascii-cursor-block {
+  display: inline;
+  white-space: pre;
+  vertical-align: baseline;
+  animation: blink-cursor 1s steps(1, end) infinite;
 }
 
 .brand-copy {
@@ -290,6 +301,17 @@
   cursor: pointer;
 }
 
+@keyframes blink-cursor {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 920px) {
   .terminal-body {
     grid-template-columns: 1fr;
@@ -298,9 +320,5 @@
   .terminal-brand {
     border-right: 0;
     border-bottom: 1px solid var(--color-terminal-border);
-  }
-
-  .logo-shell {
-    max-width: 180px;
   }
 }

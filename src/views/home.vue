@@ -40,9 +40,9 @@
         class="terminal-body"
       >
         <aside class="terminal-brand">
-          <div class="logo-shell">
-            <Logo />
-          </div>
+          <pre class="ascii-logo" aria-label="ASCII logo">{{ asciiLogo }}
+{{ asciiLogoTailTop }}<span class="ascii-cursor-block">   _____</span>
+{{ asciiLogoTailBottom }}<span class="ascii-cursor-block">  |_____|</span></pre>
           <p class="brand-copy">
             Front-end engineer focused on performant interfaces, clean architecture, and AI-assisted
             workflows.
@@ -104,7 +104,6 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
-import Logo from '@/components/logo.vue'
 import { useDraggableOffset } from '@/composables/useDraggableOffset'
 
 type WindowMode = 'open' | 'minimized' | 'maximized' | 'closed'
@@ -115,6 +114,30 @@ interface TerminalLine {
   kind: LineKind
   text: string
 }
+
+const asciiLogo = `
+   _     _  ___   ___
+  | | _ | ||   | |   |
+  | || || ||   | |   |
+  |       ||   | |   |
+  |       ||   | |   |___
+  |   _   ||   | |       |
+  |__| |__||___| |_______|
+   __   __  _______  __   __
+  |  |_|  ||       ||  | |  |
+  |       ||  _____||  |_|  |
+  |       || |_____ |       |
+  |       ||_____  ||       |
+  | ||_|| | _____| ||   _   |
+  |_|   |_||_______||__| |__|
+   __   __  ______    _______  _______
+  |  | |  ||    _ |  |       ||       |
+  |  | |  ||   | ||  |  _____||_     _|
+  |  |_|  ||   |_||_ | |_____   |   |
+  |       ||    __  ||_____  |  |   |`
+
+const asciiLogoTailTop = '  |       ||   |  | | _____| |  |   |'
+const asciiLogoTailBottom = '  |_______||___|  |_||_______|  |___|'
 
 const suggestions = [
   'what skills do you have?',
