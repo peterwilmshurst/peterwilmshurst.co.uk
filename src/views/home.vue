@@ -44,7 +44,7 @@
 {{ asciiLogoTailTop }}<span class="ascii-cursor-block">   _____</span>
 {{ asciiLogoTailBottom }}<span class="ascii-cursor-block">  |_____|</span></pre>
           <p class="brand-copy">
-            Front-end engineer focused on performant interfaces, clean architecture, and AI-assisted
+            Frontend engineer focused on performant interfaces, clean architecture, and AI-assisted
             workflows.
           </p>
         </aside>
