@@ -210,6 +210,8 @@
   padding: 1rem;
   overflow-y: auto;
   scrollbar-gutter: stable;
+  scrollbar-color: #355474 #0f1722;
+  scrollbar-width: thin;
   background:
     linear-gradient(rgb(19 27 36 / 70%) 1px, transparent 1px),
     linear-gradient(90deg, rgb(19 27 36 / 55%) 1px, transparent 1px),
@@ -218,6 +220,30 @@
     100% 24px,
     24px 100%,
     auto;
+}
+
+.console-output::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.console-output::-webkit-scrollbar-track {
+  background: #0f1722;
+  border-radius: 999px;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f7aa7 0%, #355474 100%);
+  border: 2px solid #0f1722;
+  border-radius: 999px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6292c4 0%, #42698f 100%);
+}
+
+.console-output::-webkit-scrollbar-corner {
+  background: #0f1722;
 }
 
 .console-line {
