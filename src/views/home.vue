@@ -120,7 +120,7 @@ const initialTerminalLines: TerminalLine[] = [
   {
     id: 1,
     kind: 'system',
-    text: 'Type "help" or click a quick prompt to get started.',
+    text: 'Type "help" for guidance, "clear" to reset terminal history.',
   },
 ]
 
@@ -189,7 +189,7 @@ const lastMode = ref<Exclude<WindowMode, 'closed'>>('open')
 const activeCommand = ref('')
 const commandInput = ref<HTMLInputElement | null>(null)
 const terminalWindow = ref<HTMLElement | null>(null)
-const sequence = ref(2)
+const sequence = ref(initialTerminalLines.length)
 const terminalLines = ref<TerminalLine[]>(
   initialTerminalLines.map((line) => ({ ...line })),
 )
