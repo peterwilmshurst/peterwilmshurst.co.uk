@@ -1,3 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #2a263d;
+  --color-brand-green: #39b54a;
+  --color-brand-grey: #38344d;
+  --color-light-grey: #cccccc;
+  --color-white: #ffffff;
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.logo .cls-1 {
+  fill: var(--logo-fill-1);
+}
+
+.logo .cls-2 {
+  fill: var(--logo-fill-2);
+}

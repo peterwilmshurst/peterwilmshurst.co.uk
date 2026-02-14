@@ -1,46 +1,67 @@
-# pw-2023
+# peterwilmshurst.co.uk
 
-This template should help get you started developing with Vue 3 in Vite.
+Personal site built with Vue 3, TypeScript, Vite, Pinia, Vue Router, Tailwind CSS v4, and Biome.
 
-## Recommended IDE Setup
+## Tech Stack
+- Vue 3 + TypeScript
+- Vite 7
+- Pinia 3
+- Vue Router 5
+- Tailwind CSS v4
+- Biome 2
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Getting Started
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Open the local URL printed by Vite (usually `http://localhost:5173`).
+
+## Available Scripts
+
+```sh
+npm run dev         # Start development server
+npm run lint        # Run Biome checks with autofix
+npm run format      # Format files with Biome
+npm run type-check  # Run vue-tsc type checking
+npm run build       # Type-check + production build
+npm run build-only  # Production build without type-check
+npm run preview     # Preview production build locally
+```
+
+## Project Structure
+
+```text
+src/
+  main.ts           # App bootstrap
+  App.vue           # Root component
+  views/home.vue    # Route-level Home view
+  components/logo.vue
+  router/           # Router config + route names/meta types
+  store/            # Pinia store
+  style.css         # Tailwind import + global tokens/base styles
+public/             # Static public assets
+biome.json          # Lint/format config
+```
+
+## Code Quality
+- Use TypeScript for authored application code.
+- Run `npm run format`, `npm run lint`, and `npm run type-check` before commits.
+- Biome enforces formatting and lint rules (single quotes, no semicolons, Tailwind directives enabled for CSS parsing).
+- Keep file names concise (`home.vue`, `logo.vue`) and import components in PascalCase aliases (`import Home from './home.vue'`).
+
+## Recent Changes
+- Migrated from ESLint + Stylistic to Biome.
+- Added typed route names and `RouteMeta` augmentation.
+- Moved major visual styles to Tailwind utilities and global `src/style.css`.
+- Extracted SVG logo into a standalone Vue component.
+
+## Build for Production
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Output is generated in `dist/`.
