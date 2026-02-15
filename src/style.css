@@ -25,9 +25,17 @@
 
   body {
     background:
+      linear-gradient(rgb(19 27 36 / 22%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(19 27 36 / 18%) 1px, transparent 1px),
       radial-gradient(circle at 20% 15%, #2d3644 0%, transparent 30%),
       radial-gradient(circle at 80% 90%, #17382c 0%, transparent 30%),
       linear-gradient(180deg, #0a0d13 0%, #090c12 100%);
+    background-size:
+      100% 28px,
+      28px 100%,
+      auto,
+      auto,
+      auto;
     color: var(--color-terminal-text);
     font-family: var(--font-mono-ascii);
   }
