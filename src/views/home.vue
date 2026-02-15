@@ -50,7 +50,7 @@
         </aside>
 
         <main class="terminal-console">
-          <div class="console-output">
+          <div ref="consoleOutput" class="console-output">
             <p
               v-for="line in terminalLines"
               :key="line.id"
@@ -105,6 +105,11 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import { useDraggableOffset } from '@/composables/useDraggableOffset'
+import { useTypewriterQueue } from '@/composables/useTypewriterQueue'
+import {
+  TERMINAL_TYPE_CHARACTER_DELAY_MS,
+  TERMINAL_TYPE_LINE_DELAY_MS,
+} from '@/constants/terminal'
 
 type WindowMode = 'open' | 'minimized' | 'maximized' | 'closed'
 type LineKind = 'system' | 'prompt' | 'response'
@@ -188,16 +193,49 @@ const windowMode = ref<WindowMode>('open')
 const lastMode = ref<Exclude<WindowMode, 'closed'>>('open')
 const activeCommand = ref('')
 const commandInput = ref<HTMLInputElement | null>(null)
+const consoleOutput = ref<HTMLElement | null>(null)
 const terminalWindow = ref<HTMLElement | null>(null)
 const sequence = ref(initialTerminalLines.length)
 const terminalLines = ref<TerminalLine[]>(
   initialTerminalLines.map((line) => ({ ...line })),
 )
 
-const appendLine = (kind: LineKind, text: string) => {
-  terminalLines.value.push({ id: sequence.value, kind, text })
-  sequence.value += 1
+const scrollConsoleToBottom = () => {
+  const output = consoleOutput.value
+  if (!output) {
+    return
+  }
+  output.scrollTop = output.scrollHeight
 }
+
+const appendLine = (kind: LineKind, text: string) => {
+  const lineId = sequence.value
+  terminalLines.value.push({ id: lineId, kind, text })
+  sequence.value += 1
+  void nextTick(scrollConsoleToBottom)
+  return lineId
+}
+
+const updateLineText = (lineId: number, text: string) => {
+  const line = terminalLines.value.find((item) => item.id === lineId)
+  if (!line) {
+    return
+  }
+  line.text = text
+  void nextTick(scrollConsoleToBottom)
+}
+
+const { cancelTyping, enqueueCommand } = useTypewriterQueue({
+  characterDelayMs: TERMINAL_TYPE_CHARACTER_DELAY_MS,
+  lineDelayMs: TERMINAL_TYPE_LINE_DELAY_MS,
+  appendPrompt: (command: string) => {
+    appendLine('prompt', `visitor@site:~$ ${command}`)
+  },
+  appendResponsePlaceholder: () => {
+    return appendLine('response', '')
+  },
+  updateResponseLine: updateLineText,
+})
 
 const resolveResponse = (command: string) => {
   const normalized = command.trim().toLowerCase()
@@ -246,17 +284,17 @@ const submitCommand = () => {
   const normalizedCommand = command.trim().toLowerCase()
 
   if (normalizedCommand === 'clear') {
+    cancelTyping()
     terminalLines.value = initialTerminalLines.map((line) => ({ ...line }))
     sequence.value = initialTerminalLines.length
     activeCommand.value = ''
+    void nextTick(scrollConsoleToBottom)
     return
   }
 
-  appendLine('prompt', `visitor@site:~$ ${command}`)
-  for (const answer of resolveResponse(command)) {
-    appendLine('response', answer)
-  }
+  const trimmedCommand = command.trim()
   activeCommand.value = ''
+  enqueueCommand(trimmedCommand, resolveResponse(trimmedCommand))
 }
 
 const runSuggestion = (suggestion: string) => {
